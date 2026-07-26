@@ -1,0 +1,15 @@
+# Downloaded source PDFs (cache) - never committed
+ingestion/.cache/
+
+# Normalized content produced by the pipeline. Not committed: redistribution of
+# the current MVP source is not cleared (see compliance/compliance-report.md).
+app/assets/content/library.generated.json
+app/assets/content/index.json
+app/assets/content/works/
+
+# Python
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv/
