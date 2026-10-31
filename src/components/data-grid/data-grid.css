@@ -1,0 +1,143 @@
+/* Structural styles for <DataGrid>. Colours come from the Material 3 tokens in index.css. */
+
+.dg-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  background-color: hsl(var(--surface-container));
+  border-bottom: 1px solid hsl(var(--outline-variant));
+}
+
+.dg-header-cell {
+  position: relative;
+  flex-shrink: 0;
+  height: 100%;
+  background-color: hsl(var(--surface-container));
+  border-right: 1px solid hsl(var(--outline-variant) / 0.5);
+  user-select: none;
+}
+
+.dg-header-cell[data-drop='before']::before,
+.dg-header-cell[data-drop='after']::after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  bottom: 6px;
+  width: 3px;
+  border-radius: 2px;
+  background-color: hsl(var(--primary));
+  z-index: 6;
+}
+.dg-header-cell[data-drop='before']::before {
+  left: -2px;
+}
+.dg-header-cell[data-drop='after']::after {
+  right: -2px;
+}
+
+.dg-resizer {
+  position: absolute;
+  top: 0;
+  right: -5px;
+  z-index: 5;
+  width: 10px;
+  height: 100%;
+  cursor: col-resize;
+  touch-action: none;
+}
+.dg-resizer::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 30%;
+  width: 2px;
+  height: 40%;
+  border-radius: 1px;
+  background-color: transparent;
+  transition:
+    background-color 120ms,
+    top 120ms,
+    height 120ms;
+}
+.dg-header-cell:hover .dg-resizer::after {
+  background-color: hsl(var(--outline));
+}
+.dg-resizer:hover::after,
+.dg-resizer.is-resizing::after {
+  top: 0;
+  height: 100%;
+  background-color: hsl(var(--primary));
+}
+
+.dg-row {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  --dg-row-base: hsl(var(--surface));
+  background-color: var(--dg-row-bg, var(--dg-row-base));
+  border-bottom: 1px solid hsl(var(--outline-variant) / 0.6);
+}
+.dg-row[data-striped='true'] {
+  --dg-row-base: hsl(var(--surface-container-low));
+}
+.dg-row[data-group='true'] {
+  --dg-row-base: hsl(var(--surface-container));
+}
+.dg-row[data-selected='true'] {
+  --dg-row-base: hsl(var(--secondary-container));
+}
+/* M3 hover state layer: 8% on-surface over an opaque base, so pinned cells stay opaque. */
+.dg-row:hover {
+  --dg-row-bg: color-mix(in srgb, var(--dg-row-base), hsl(var(--on-surface)) 8%);
+}
+
+.dg-cell {
+  position: relative;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: inherit;
+  user-select: none;
+}
+.dg-cell[data-in-range='true'] {
+  background-image: linear-gradient(hsl(var(--primary) / 0.14), hsl(var(--primary) / 0.14));
+}
+.dg-cell[data-focused='true'] {
+  outline: 2px solid hsl(var(--primary));
+  outline-offset: -2px;
+}
+.dg-cell[data-dirty='true']::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-style: solid;
+  border-width: 8px 8px 0 0;
+  border-color: hsl(var(--primary)) transparent transparent transparent;
+}
+.dg-cell[data-editing='true'] {
+  padding: 2px;
+  overflow: visible;
+  z-index: 4;
+}
+
+[data-pinned-edge='left'] {
+  border-right: 1px solid hsl(var(--outline-variant));
+  box-shadow: 4px 0 6px -4px rgb(0 0 0 / 0.25);
+}
+[data-pinned-edge='right'] {
+  border-left: 1px solid hsl(var(--outline-variant));
+  box-shadow: -4px 0 6px -4px rgb(0 0 0 / 0.25);
+}
+
+.dg-filler {
+  flex: 1 1 0;
+  min-width: 0;
+}
