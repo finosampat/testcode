@@ -27,6 +27,8 @@ export function DemoPage() {
   useEffect(() => {
     setLoading(true)
     setLoadError(null)
+    // Release the previous dataset before generating the next one to keep peak memory down.
+    setRows(EMPTY)
     const started = performance.now()
     const { promise, cancel } = loadEmployees(settings.rowCount)
     let active = true

@@ -52,4 +52,4 @@ export const DEFAULT_SETTINGS: DemoSettings = {
   simulate: 'none',
 }
 
-export const ROW_COUNT_OPTIONS = [1_000, 10_000, 50_000, 100_000, 250_000]
+export const ROW_COUNT_OPTIONS = [1_000, 10_000, 50_000, 100_000, 150_000]

@@ -2,7 +2,7 @@
 
 An AG Grid–style data grid built on **[TanStack Table](https://tanstack.com/table)** (headless engine) and **[TanStack Virtual](https://tanstack.com/virtual)** (row virtualization). It uses **Tailwind CSS** + **shadcn/ui** components themed with **Material Design 3** tokens (color roles, type scale, elevation, state layers).
 
-`DataGrid` is a self-contained, library-style component in [`src/components/data-grid/`](src/components/data-grid). The demo app ([`src/App.tsx`](src/App.tsx), [`src/pages/`](src/pages)) shows it with 50,000 generated employee records (up to 250,000).
+`DataGrid` is a self-contained, library-style component in [`src/components/data-grid/`](src/components/data-grid). The demo app ([`src/App.tsx`](src/App.tsx), [`src/pages/`](src/pages)) shows it with 50,000 generated employee records (up to 150,000).
 
 ## Getting started
 
@@ -23,7 +23,7 @@ npm run lint       # ESLint
 | Columns | Typed `columnDefs`: `field`, `headerName`, `width`/`minWidth`/`maxWidth`, `sortable`, `filterable`, `editable`, `pinned`, `hide`, `valueGetter`, `valueFormatter`, `cellRenderer`, `comparator`, `aggFunc` |
 | Sorting | Click a header to sort. Shift+click adds more columns (numbered indicators). Header menu has asc/desc/clear |
 | Filtering | Text, number, date and set filters, opened from the header funnel or the toolbar's **Filter** button. Active filters show as removable chips. Global search box (debounced) |
-| Scale | Rows are virtualized, so only the visible rows are in the DOM (~30 rows, even at 250k). Pagination is optional, with a page-size picker |
+| Scale | Rows are virtualized, so only the visible rows are in the DOM (~30 rows, even at 150k). Pagination is optional, with a page-size picker |
 | Column layout | Pin left/right (sticky, with shadows), drag the resize handle (double-click resets), drag headers to reorder (works across pinned regions), show/hide from the column picker, reset layout |
 | Selection | `none` / `single` / `multiple` modes. Checkbox column with select-all (selects every filtered row). Ctrl/⌘+click and Shift+click on rows. M3 hover and selected state layers |
 | Editing | Text, number, select and date editors. Start with Enter, F2, double-click or typing. Enter commits and moves down, Tab commits and moves right, Escape cancels. Edited cells get a corner marker and a tooltip with the old value. **Revert** undoes all edits |
@@ -135,4 +135,5 @@ src/
 
 - Mock data is generated in a Web Worker with a fixed faker seed, so the main thread stays responsive and the rows are the same on every load.
 - Measured in a production build (headless Chrome on the dev VM), with 250,000 rows: about 1 s from data arriving to first paint, about 1 s per global search or sort, and about 30 DOM rows at any scroll position.
+- Memory, not rendering, is the practical row limit. TanStack Table v8 attaches its feature methods to every row object, and the demo rows are fairly wide, so JS heap use is several KB per row. 250k rows used about 2 GB in dev mode, and switching between large datasets crashed a Chrome tab, so the demo stops at 150k. The demo also releases the previous dataset before generating a new one.
 - shadcn/ui components live in `src/components/ui` and are registered in `components.json`, so `npx shadcn@latest add <component>` works for adding more.

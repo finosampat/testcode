@@ -223,6 +223,16 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
 
   useChangeEffect(() => setPagination((p) => ({ pageIndex: 0, pageSize: pageSizeProp ?? p.pageSize })), [pageSizeProp])
 
+  // Drop selections the new mode can't represent (e.g. several rows when switching to single).
+  useChangeEffect(() => {
+    setRowSelection((prev) => {
+      const ids = Object.keys(prev).filter((id) => prev[id])
+      if (selectionMode === 'none') return ids.length ? {} : prev
+      if (selectionMode === 'single' && ids.length > 1) return { [ids[0]]: true }
+      return prev
+    })
+  }, [selectionMode])
+
   // On narrow containers, pinned columns would eat the viewport; keep only the checkbox column pinned.
   const [isNarrow, setIsNarrow] = useState(false)
   useEffect(() => {
@@ -848,7 +858,7 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
             <ChevronRight className={cn('size-4 transition-transform', row.getIsExpanded() && 'rotate-90')} />
           </button>
           <span className="truncate text-title-small text-on-surface">{label}</span>
-          <span className="shrink-0 text-label-medium text-on-surface-variant">({row.getLeafRows().length.toLocaleString()})</span>
+          <span className="shrink-0 text-label-medium text-on-surface-variant">({row.getLeafRows().filter((r) => !r.getIsGrouped()).length.toLocaleString()})</span>
         </div>
       )
     }
