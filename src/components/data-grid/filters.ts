@@ -144,7 +144,8 @@ type Formatter = (value: any, data: any) => string
  * the displayed text (e.g. "On-site" for `remote: false`, "$80,000" for `80000`).
  */
 export function createGlobalSearchFn(getFormatter: (columnId: string) => Formatter | undefined): FilterFn<any> {
-  return (row, columnId, query: string) => {
+  return (row, columnId, filter: string | { query: string } | undefined) => {
+    const query = typeof filter === 'string' ? filter : (filter?.query ?? '')
     const q = query.trim().toLowerCase()
     if (!q) return true
     const value = row.getValue(columnId)

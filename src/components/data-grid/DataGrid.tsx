@@ -190,11 +190,14 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     [columnDefs, defaultColDef, sample, showCheckbox, enableSorting, enableFilters, enableColumnResizing, enableGrouping],
   )
 
-  const formatterById = useRef(new Map<string, NonNullable<ColumnDef<TData>['valueFormatter']>>())
-  formatterById.current = new Map(
-    columns.flatMap((c) => (c.id && c.meta?.def?.valueFormatter ? [[c.id, c.meta.def.valueFormatter] as const] : [])),
+  const formatterById = useMemo(
+    () =>
+      new Map<string, NonNullable<ColumnDef<TData>['valueFormatter']>>(
+        columns.flatMap((c) => (c.id && c.meta?.def?.valueFormatter ? [[c.id, c.meta.def.valueFormatter] as const] : [])),
+      ),
+    [columns],
   )
-  const globalFilterFn = useMemo(() => createGlobalSearchFn((id) => formatterById.current.get(id)), [])
+  const globalFilterFn = useMemo(() => createGlobalSearchFn((id) => formatterById.get(id)), [formatterById])
 
   const defaultPinning = useMemo<ColumnPinningState>(
     () => ({
@@ -216,6 +219,11 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     Object.entries(initialState?.filterModel ?? {}).map(([id, value]) => ({ id, value })),
   )
   const [globalFilter, setGlobalFilter] = useState(initialState?.globalFilter ?? '')
+  // TanStack only re-filters when the filter value changes, so tie it to the formatters too.
+  const tableGlobalFilter = useMemo(
+    () => (globalFilter ? { query: globalFilter, formatterById } : undefined),
+    [globalFilter, formatterById],
+  )
   const [grouping, setGrouping] = useState<GroupingState>(initialState?.groupBy ?? [])
   const [expanded, setExpanded] = useState<ExpandedState>({})
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
@@ -263,7 +271,7 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     state: {
       sorting,
       columnFilters,
-      globalFilter,
+      globalFilter: tableGlobalFilter,
       grouping: enableGrouping ? grouping : [],
       expanded,
       rowSelection: selectionMode === 'none' ? {} : rowSelection,
@@ -281,7 +289,10 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
-    onGlobalFilterChange: setGlobalFilter,
+    onGlobalFilterChange: (u) => {
+      const next = resolve<unknown>(u, tableGlobalFilter)
+      setGlobalFilter(typeof next === 'string' ? next : ((next as { query?: string } | undefined)?.query ?? ''))
+    },
     onGroupingChange: setGrouping,
     onExpandedChange: setExpanded,
     onRowSelectionChange: setRowSelection,
