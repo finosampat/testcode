@@ -16,6 +16,18 @@ npm run preview    # serve the production build
 npm run lint       # ESLint
 ```
 
+## Deployment
+
+The app is a static site: `npm run build` writes plain files to `dist/`.
+
+**GitHub Pages:** [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) builds and publishes on every push to `main`, or when run manually. The custom domain `grid.patbots.com` comes from [`public/CNAME`](public/CNAME). One-time setup:
+
+1. Make the repo public (Pages on a private repo needs a paid GitHub plan).
+2. **Settings → Pages → Build and deployment → Source: GitHub Actions**, and set the custom domain to `grid.patbots.com` (enable **Enforce HTTPS** once the certificate is issued).
+3. GoDaddy → **Domains → patbots.com → DNS**: add `CNAME` record `grid` → `finosampat.github.io`.
+
+**Any other static host:** run `npx vite build --base=./` and upload the contents of `dist/`. Relative asset paths let the site run from the domain root or a subfolder.
+
 ## Features
 
 | Area | What's included |
