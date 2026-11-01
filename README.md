@@ -22,13 +22,13 @@ npm run lint       # ESLint
 | --- | --- |
 | Columns | Typed `columnDefs`: `field`, `headerName`, `width`/`minWidth`/`maxWidth`, `sortable`, `filterable`, `editable`, `pinned`, `hide`, `valueGetter`, `valueFormatter`, `cellRenderer`, `comparator`, `aggFunc` |
 | Sorting | Click a header to sort. Shift+click adds more columns (numbered indicators). Header menu has asc/desc/clear |
-| Filtering | Text, number, date and set filters, opened from the header funnel or the toolbar's **Filter** button. Active filters show as removable chips. Global search box (debounced) |
+| Filtering | Text, number, date and set filters, opened from the header funnel or the toolbar's **Filter** button. Active filters show as removable chips. The global search box (debounced) matches both raw values and displayed text, e.g. "On-site" |
 | Scale | Rows are virtualized, so only the visible rows are in the DOM (~30 rows, even at 150k). Pagination is optional, with a page-size picker |
 | Column layout | Pin left/right (sticky, with shadows), drag the resize handle (double-click resets), drag headers to reorder (works across pinned regions), show/hide from the column picker, reset layout |
 | Selection | `none` / `single` / `multiple` modes. Checkbox column with select-all (selects every filtered row). Ctrl/⌘+click and Shift+click on rows. M3 hover and selected state layers |
-| Editing | Text, number, select and date editors. Start with Enter, F2, double-click or typing. Enter commits and moves down, Tab commits and moves right, Escape cancels. Edited cells get a corner marker and a tooltip with the old value. **Revert** undoes all edits |
+| Editing | Text, number, select and date editors. Columns with a `valueGetter` are editable only when they also define a `valueSetter`. Start with Enter, F2, double-click or typing. Enter commits and moves down, Tab commits and moves right, Escape cancels. Edited cells get a corner marker and a tooltip with the old value. **Revert** undoes all edits |
 | Renderers | `cellRenderers.badge` (status chips), `.progress`, `.link`, `.avatar`. `formatters.currency`, `.number`, `.percent`, `.date`, `.dateTime` |
-| Export / clipboard | CSV export of all filtered rows or only selected rows (respects sort and visible columns). Select a cell range by mouse drag, Shift+click, Shift+Arrows or Ctrl+A, then copy it as TSV with Ctrl+C |
+| Export / clipboard | CSV export of all filtered rows or only selected rows (respects sort and visible columns). CSV always uses raw values, e.g. `80000` and ISO dates. Select a cell range by mouse drag, Shift+click, Shift+Arrows or Ctrl+A, then copy it as TSV with Ctrl+C. Copy uses the displayed text (`$80,000`) by default; set `clipboardValues="raw"` to copy raw values |
 | Grouping | Group by one or more columns (toolbar or header menu). Group rows can be expanded/collapsed and show `sum` / `avg` / `count` / `min` / `max` aggregates. Expand all / collapse all |
 | Status bar | Row, filtered and selected counts. For a numeric cell range: count, sum, avg, min, max |
 | States | Loading skeleton, empty state (with "clear filters" when filtered), error state with retry |
@@ -45,7 +45,7 @@ npm run lint       # ESLint
 | Tab / Shift+Tab | Next / previous cell, wrapping to the next or previous row; Tab leaves the grid at the end |
 | Home / End, Ctrl+Home / Ctrl+End | First / last column; first / last cell |
 | PageUp / PageDown | Move up / down one viewport |
-| Enter / F2 / typing | Start editing (on a group row, Enter expands or collapses it) |
+| Enter / F2 / typing | Start editing (on a group row, Enter expands or collapses it). While editing, Enter / Tab commit and move to the next displayed position; if the edit re-sorts the row, focus stays on that screen position rather than following the row |
 | Escape | Cancel the edit, or collapse the range |
 | Space | Toggle row selection |
 | Ctrl/⌘+C | Copy the range as TSV |
@@ -102,7 +102,7 @@ export function Trades({ rows }: { rows: Trade[] }) {
 
 - **`ColumnDef<TData, TValue>`**: per-column configuration (see the table above). If you leave out `dataType`, it is inferred from the first row, and it sets the default filter, editor, alignment and sort.
 - **`DataGridProps<TData>`** = `DataGridOptions` + `DataGridEvents` + `rowData`, `columnDefs`, `getRowId`, `loading`, `error`, `apiRef`.
-- **`DataGridOptions`**: `height`, `density` (`compact` | `standard` | `comfortable`), `rowHeight`, `pagination`, `pageSize`, `pageSizeOptions`, `rowSelection`, `checkboxSelection`, `selectOnRowClick`, `enableSorting`, `enableMultiSort`, `enableFilters`, `enableGlobalSearch`, `enableColumnResizing`, `enableColumnReordering`, `enableColumnPinning`, `enableColumnPicker`, `enableEditing`, `enableRangeSelection`, `enableGrouping`, `enableExport`, `enableStatusBar`, `showToolbar`, `striped`, `overscan`, `exportFileName`, `copyHeadersToClipboard`, `responsiveBreakpoint`, `defaultColDef`, `initialState`, `toolbarStart`, `toolbarEnd`, `emptyMessage`, `getRowClassName`.
+- **`DataGridOptions`**: `height`, `density` (`compact` | `standard` | `comfortable`), `rowHeight`, `pagination`, `pageSize`, `pageSizeOptions`, `rowSelection`, `checkboxSelection`, `selectOnRowClick`, `enableSorting`, `enableMultiSort`, `enableFilters`, `enableGlobalSearch`, `enableColumnResizing`, `enableColumnReordering`, `enableColumnPinning`, `enableColumnPicker`, `enableEditing`, `enableRangeSelection`, `enableGrouping`, `enableExport`, `enableStatusBar`, `showToolbar`, `striped`, `overscan`, `exportFileName`, `copyHeadersToClipboard`, `clipboardValues`, `responsiveBreakpoint`, `defaultColDef`, `initialState`, `toolbarStart`, `toolbarEnd`, `emptyMessage`, `getRowClassName`.
 - **`DataGridEvents`**: `onCellValueChanged`, `onSelectionChanged`, `onSortChanged`, `onFilterChanged`, `onGroupingChanged`, `onColumnStateChanged`, `onRowClicked`, `onRowDoubleClicked`, `onCopy`, `onRetry`.
 - **`DataGridApi`** (via `apiRef`): `exportCsv`, `getCsv`, `copySelectionToClipboard`, `getSelectedRows`, `selectAll`, `deselectAll`, `getFilterModel`, `setFilterModel`, `clearFilters`, `setSortModel`, `setGroupBy`, `resetEdits`, `getDirtyCellCount`, `getDisplayedRowCount`, `scrollToRow`, `getColumnState`.
 - Filter value types: `TextFilterValue`, `NumberFilterValue`, `DateFilterValue`, `SetFilterValue` (`FilterModel` is keyed by column id).

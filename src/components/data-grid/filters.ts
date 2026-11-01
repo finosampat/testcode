@@ -137,14 +137,27 @@ export const gridFilterFn: FilterFn<any> = (row, columnId, filterValue: ColumnFi
   matchesFilter(row.getValue(columnId), filterValue)
 gridFilterFn.autoRemove = (value: ColumnFilterValue | undefined) => !isFilterActive(value)
 
-export const globalSearchFn: FilterFn<any> = (row, columnId, query: string) => {
-  const q = query.trim().toLowerCase()
-  if (!q) return true
-  const value = row.getValue(columnId)
-  if (value == null) return false
-  const s = value instanceof Date ? toDayKey(value) : String(value)
-  return s.toLowerCase().includes(q)
+type Formatter = (value: any, data: any) => string
+
+/**
+ * Global search matching both the raw value and, when the column has a `valueFormatter`,
+ * the displayed text (e.g. "On-site" for `remote: false`, "$80,000" for `80000`).
+ */
+export function createGlobalSearchFn(getFormatter: (columnId: string) => Formatter | undefined): FilterFn<any> {
+  return (row, columnId, query: string) => {
+    const q = query.trim().toLowerCase()
+    if (!q) return true
+    const value = row.getValue(columnId)
+    if (value != null) {
+      const raw = value instanceof Date ? toDayKey(value) : String(value)
+      if (raw.toLowerCase().includes(q)) return true
+    }
+    const format = getFormatter(columnId)
+    return !!format && format(value, row.original).toLowerCase().includes(q)
+  }
 }
+
+export const globalSearchFn = createGlobalSearchFn(() => undefined)
 
 export function defaultFilterValue(type: FilterType, options: string[] = []): ColumnFilterValue {
   switch (type) {

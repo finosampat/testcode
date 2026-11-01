@@ -12,13 +12,19 @@ export function getPath(obj: any, path: string): unknown {
   return cur
 }
 
+const UNSAFE_KEYS = new Set(['__proto__', 'constructor', 'prototype'])
+
+const shallowClone = (v: any) => (Array.isArray(v) ? [...v] : { ...v })
+
+/** Immutably set a dot-path value. Throws on prototype-polluting segments. */
 export function setPath<T>(obj: T, path: string, value: unknown): T {
   const keys = path.split('.')
-  const root: any = Array.isArray(obj) ? [...(obj as any)] : { ...(obj as any) }
+  if (keys.some((k) => UNSAFE_KEYS.has(k))) throw new Error(`Unsafe field path: ${path}`)
+  const root: any = shallowClone(obj)
   let cur = root
   for (let i = 0; i < keys.length - 1; i++) {
     const k = keys[i]
-    cur[k] = cur[k] == null ? {} : { ...cur[k] }
+    cur[k] = cur[k] == null ? {} : shallowClone(cur[k])
     cur = cur[k]
   }
   cur[keys[keys.length - 1]] = value

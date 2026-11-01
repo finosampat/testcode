@@ -103,6 +103,7 @@ export interface ColumnDef<TData = any, TValue = any> {
   /** Options for the set filter. Derived from the data when omitted. */
   filterOptions?: string[]
 
+  /** Columns with a `valueGetter` are only editable when they also define a `valueSetter`. */
   editable?: boolean | ((data: TData) => boolean)
   /** Editor UI to use. Inferred from `dataType` / `cellEditorOptions` when omitted. */
   cellEditor?: CellEditorType
@@ -123,7 +124,10 @@ export interface ColumnDef<TData = any, TValue = any> {
 
   /** Compute the cell value from the row instead of reading `field`. */
   valueGetter?: (data: TData) => TValue
-  /** Format the value for display, copy and search. `data` is undefined for aggregated cells. */
+  /**
+   * Format the value for display, clipboard copy (see `clipboardValues`) and global search.
+   * CSV export always uses raw values. `data` is undefined for aggregated cells.
+   */
   valueFormatter?: (value: TValue, data: TData | undefined) => string
   /** Render custom cell content. */
   cellRenderer?: (params: CellRendererParams<TData, TValue>) => ReactNode
@@ -248,6 +252,8 @@ export interface DataGridOptions<TData = any> {
   exportFileName?: string
   /** Include headers when copying a cell range. */
   copyHeadersToClipboard?: boolean
+  /** Copy displayed (`valueFormatter`) text or raw values with Ctrl+C. Defaults to `'formatted'`. */
+  clipboardValues?: 'formatted' | 'raw'
 
   /** Defaults merged into every column definition. */
   defaultColDef?: Partial<ColumnDef<TData>>
