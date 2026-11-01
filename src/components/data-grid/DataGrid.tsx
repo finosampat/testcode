@@ -34,12 +34,12 @@ import { Checkbox } from '@/components/ui/checkbox'
 import { cn } from '@/lib/utils'
 import { CellEditor, type EditorMove } from './CellEditor'
 import { SELECT_COLUMN_ID, buildColumns, getColId } from './columns'
-import { globalSearchFn } from './filters'
+import { createGlobalSearchFn } from './filters'
 import { GridFooter, type RangeStats } from './GridFooter'
 import { EmptyState, ErrorState, SkeletonRows } from './GridStates'
 import { GridToolbar } from './GridToolbar'
 import { HeaderCell, type DropSide } from './HeaderCell'
-import type { ColumnFilterValue, ColumnState, DataGridApi, DataGridProps, ExportCsvOptions, FilterModel } from './types'
+import type { ColumnDef, ColumnFilterValue, ColumnState, DataGridApi, DataGridProps, ExportCsvOptions, FilterModel } from './types'
 import {
   clamp,
   copyText,
@@ -139,6 +139,7 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     overscan = 12,
     exportFileName = 'export.csv',
     copyHeadersToClipboard = false,
+    clipboardValues = 'formatted',
     defaultColDef,
     initialState,
     toolbarStart,
@@ -189,6 +190,15 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     [columnDefs, defaultColDef, sample, showCheckbox, enableSorting, enableFilters, enableColumnResizing, enableGrouping],
   )
 
+  const formatterById = useMemo(
+    () =>
+      new Map<string, NonNullable<ColumnDef<TData>['valueFormatter']>>(
+        columns.flatMap((c) => (c.id && c.meta?.def?.valueFormatter ? [[c.id, c.meta.def.valueFormatter] as const] : [])),
+      ),
+    [columns],
+  )
+  const globalFilterFn = useMemo(() => createGlobalSearchFn((id) => formatterById.get(id)), [formatterById])
+
   const defaultPinning = useMemo<ColumnPinningState>(
     () => ({
       left: columnDefs.filter((d) => d.pinned === 'left').map(getColId),
@@ -209,6 +219,11 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     Object.entries(initialState?.filterModel ?? {}).map(([id, value]) => ({ id, value })),
   )
   const [globalFilter, setGlobalFilter] = useState(initialState?.globalFilter ?? '')
+  // TanStack only re-filters when the filter value changes, so tie it to the formatters too.
+  const tableGlobalFilter = useMemo(
+    () => (globalFilter ? { query: globalFilter, formatterById } : undefined),
+    [globalFilter, formatterById],
+  )
   const [grouping, setGrouping] = useState<GroupingState>(initialState?.groupBy ?? [])
   const [expanded, setExpanded] = useState<ExpandedState>({})
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
@@ -256,7 +271,7 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     state: {
       sorting,
       columnFilters,
-      globalFilter,
+      globalFilter: tableGlobalFilter,
       grouping: enableGrouping ? grouping : [],
       expanded,
       rowSelection: selectionMode === 'none' ? {} : rowSelection,
@@ -274,7 +289,10 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     },
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
-    onGlobalFilterChange: setGlobalFilter,
+    onGlobalFilterChange: (u) => {
+      const next = resolve<unknown>(u, tableGlobalFilter)
+      setGlobalFilter(typeof next === 'string' ? next : ((next as { query?: string } | undefined)?.query ?? ''))
+    },
     onGroupingChange: setGrouping,
     onExpandedChange: setExpanded,
     onRowSelectionChange: setRowSelection,
@@ -284,7 +302,8 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     onPaginationChange: setPagination,
     onColumnPinningChange: (u) =>
       setColumnPinning((prev) => {
-        const next = resolve(u, isNarrow ? effectivePinning : prev)
+        // Resolve against the saved pins, not the narrow-screen view, so suspended pins survive.
+        const next = resolve(u, prev)
         return { left: (next.left ?? []).filter((id) => id !== SELECT_COLUMN_ID), right: next.right ?? [] }
       }),
     enableRowSelection: selectionMode !== 'none',
@@ -302,7 +321,7 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     autoResetPageIndex: false,
     autoResetExpanded: false,
     manualPagination: !pagination,
-    globalFilterFn: globalSearchFn,
+    globalFilterFn,
     getColumnCanGlobalFilter: (column) => !column.columnDef.meta?.isSelect,
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
@@ -322,6 +341,12 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
   const rightWidth = table.getRightTotalSize()
   const filteredRowCount = table.getFilteredRowModel().rows.length
   const pageRowTotal = table.getPrePaginationRowModel().rows.length
+  const lastPageIndex = Math.max(0, Math.ceil(pageRowTotal / paginationState.pageSize) - 1)
+  // Keep the page in range when rowData, filters or edits shrink the row count.
+  useEffect(() => {
+    if (pagination && paginationState.pageIndex > lastPageIndex)
+      setPagination((p) => ({ ...p, pageIndex: lastPageIndex }))
+  }, [pagination, paginationState.pageIndex, lastPageIndex])
   const selectedCount = Object.keys(rowSelection).length ? table.getSelectedRowModel().flatRows.length : 0
   const isFiltered = columnFilters.length > 0 || !!globalFilter
 
@@ -455,6 +480,8 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     (row: Row<TData>, column: Column<TData, unknown>) => {
       const def = column.columnDef.meta?.def
       if (!enableEditing || !def || row.getIsGrouped()) return false
+      // Computed columns can't be written back through `field`; they need an explicit setter.
+      if (def.valueGetter && !def.valueSetter) return false
       return typeof def.editable === 'function' ? def.editable(row.original) : !!def.editable
     },
     [enableEditing],
@@ -497,7 +524,13 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
       } else newValue = input
       if (valuesEqual(oldValue, newValue)) return
 
-      const updated = def.valueSetter ? def.valueSetter(row.original, newValue) : setPath(row.original, def.field, newValue)
+      let updated: TData
+      try {
+        updated = def.valueSetter ? def.valueSetter(row.original, newValue) : setPath(row.original, def.field, newValue)
+      } catch (err) {
+        console.error('[DataGrid] edit rejected:', err)
+        return
+      }
       const index = row.index
       setData((prev) => {
         const next = prev.slice()
@@ -555,10 +588,21 @@ export function DataGrid<TData>(props: DataGridProps<TData>) {
     for (let r = range.r0; r <= range.r1; r++) {
       const row = rows[r]
       if (!row) continue
-      lines.push(cols.map((c) => clean(toPlainString(row.getValue(c.id), 'day'))).join('\t'))
+      lines.push(
+        cols
+          .map((c) => {
+            const value = row.getValue(c.id)
+            const text =
+              clipboardValues === 'formatted' && !row.getIsGrouped()
+                ? formatCellValue(c.columnDef.meta?.def, value, row.original)
+                : toPlainString(value, 'day')
+            return clean(text)
+          })
+          .join('\t'),
+      )
     }
     return { text: lines.join('\n'), rowCount: range.r1 - range.r0 + 1, columnCount: cols.length }
-  }, [range, visibleColumns, rows, copyHeadersToClipboard])
+  }, [range, visibleColumns, rows, copyHeadersToClipboard, clipboardValues])
 
   const copySelection = useCallback(async () => {
     const res = getRangeText()
