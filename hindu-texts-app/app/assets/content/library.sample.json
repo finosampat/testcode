@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "categories": ["Charitras", "Vedas", "Upanishads", "Puranas", "Literature"],
+  "works": [
+    {
+      "id": "sample-isha-upanishad",
+      "title": "Isha Upanishad (opening verses)",
+      "category": "Upanishads",
+      "language": "sa",
+      "languageLabel": "Sanskrit",
+      "script": "Deva",
+      "author": "Unknown (Vedic tradition)",
+      "attribution": "Public-domain Vedic text included as a sample so the app is readable before ingestion is run.",
+      "chapters": [
+        {
+          "heading": "शान्ति मन्त्र",
+          "body": "ॐ पूर्णमदः पूर्णमिदं पूर्णात् पूर्णमुदच्यते ।\n\nपूर्णस्य पूर्णमादाय पूर्णमेवावशिष्यते ॥\n\nॐ शान्तिः शान्तिः शान्तिः ॥",
+          "order": 0
+        },
+        {
+          "heading": "मन्त्र १ (with transliteration)",
+          "body": "ॐ ईशा वास्यमिदं सर्वं यत्किञ्च जगत्यां जगत् ।\n\ntena tyaktena bhuñjīthā mā gṛdhaḥ kasya sviddhanam ॥\n\nAll this, whatever moves in this moving world, is pervaded by the Lord. Enjoy what is given up; do not covet what belongs to another.",
+          "order": 1
+        }
+      ],
+      "sourceUrl": "https://en.wikisource.org/wiki/Isha_Upanishad",
+      "license": {
+        "basis": "Public domain (ancient text; sample bundled with the app)",
+        "redistribution": "permitted",
+        "holder": null,
+        "notes": "Sample content only. Run the ingestion pipeline to replace this file with real sources.",
+        "termsUrl": null
+      },
+      "sourceFiles": [],
+      "schemaVersion": 1
+    },
+    {
+      "id": "sample-rigveda-hymn",
+      "title": "Rigveda 1.1 (Agni hymn, opening)",
+      "category": "Vedas",
+      "language": "sa",
+      "languageLabel": "Sanskrit",
+      "script": "Deva",
+      "author": "Madhucchandas Vaishvamitra (traditional)",
+      "attribution": "Public-domain Vedic text included as a sample so the app is readable before ingestion is run.",
+      "chapters": [
+        {
+          "heading": "सूक्त १",
+          "body": "अग्निमीळे पुरोहितं यज्ञस्य देवमृत्विजम् ।\n\nहोतारं रत्नधातमम् ॥\n\nagnim īḷe purohitaṃ yajñasya devam ṛtvijam | hotāraṃ ratnadhātamam ||\n\nI praise Agni, the chosen priest, god and minister of sacrifice, the invoker, bestower of treasure.",
+          "order": 0
+        }
+      ],
+      "sourceUrl": "https://en.wikisource.org/wiki/Rig_Veda",
+      "license": {
+        "basis": "Public domain (ancient text; sample bundled with the app)",
+        "redistribution": "permitted",
+        "holder": null,
+        "notes": "Sample content only. Run the ingestion pipeline to replace this file with real sources.",
+        "termsUrl": null
+      },
+      "sourceFiles": [],
+      "schemaVersion": 1
+    }
+  ]
+}
