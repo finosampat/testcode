@@ -9,8 +9,3 @@ dist-ssr
 .vscode/*
 !.vscode/extensions.json
 npm-debug.log*
-
-# Xcode
-xcuserdata/
-DerivedData/
-*.xcresult
