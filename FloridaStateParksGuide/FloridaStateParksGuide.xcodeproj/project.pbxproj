@@ -1,0 +1,589 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 60;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		95BCD475CDA6F9B156B1EF68 /* FloridaStateParksGuideApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE5A4D515B5A37907401D2C1 /* FloridaStateParksGuideApp.swift */; };
+		538DA28153A12891BEFB1F3E /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB672FDCD8AB6ED7AEDF0CC /* Activity.swift */; };
+		BC17B675FB196AEBFD71D0DD /* Park+Seed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74715D300A2E4698A0FB213A /* Park+Seed.swift */; };
+		1AC04E528FDBD8E60398071D /* Park.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81EB908B6B353108C3156AC /* Park.swift */; };
+		910C14864D88E342A259013E /* Region.swift in Sources */ = {isa = PBXBuildFile; fileRef = 691A67CA3A2E6EB9C5C38CEF /* Region.swift */; };
+		6AC9DDEA8082F70FE694F352 /* Color+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F1895AFA773E132E79BBA37 /* Color+Hex.swift */; };
+		DF0797FD1E47F22DFFDB6241 /* ParksViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F994EBB8E3F460B37D5AC66D /* ParksViewModel.swift */; };
+		7590BF9AC374EC25FEF03FC7 /* ActivitiesSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98938941515A6BEC964B24A0 /* ActivitiesSectionView.swift */; };
+		6E1CFB41B560FD9EB135525B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C63F7F904569B2DAE9FD7A3 /* ContentView.swift */; };
+		62798D871CB784EC9ED3B4A0 /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CADA59C748B855864EC846 /* FavoriteButton.swift */; };
+		9E85D60731632B17FD699D7A /* GradientHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7228B00A539C7F9113B8F597 /* GradientHeaderView.swift */; };
+		CAACE661F2AEC5E1847B7F51 /* ParkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8805470DAA5FE1FE4815B2DC /* ParkDetailView.swift */; };
+		C0B036ACADA57379770AB9E6 /* ParkListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7C3B0D58C95729D282ADEE /* ParkListView.swift */; };
+		AFEE5A2466FB5CD28A433AFB /* ParkRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B88C9E035F03ED4061A8D4 /* ParkRowView.swift */; };
+		B2E5DD291E50839ED9421344 /* StatsRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D728B0D174DB6E4176EAA5 /* StatsRowView.swift */; };
+		4A22121BE287129E23A40873 /* ParksViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CA97C01B8B520A81405E18 /* ParksViewModelTests.swift */; };
+		FFF59DF66F1687E070D12205 /* ParkNavigationUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844CAA6421451F5E4CFC56F9 /* ParkNavigationUITests.swift */; };
+		F220CE9B5BB42925A7269A8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 123FB566C8CB6D216F3188C3 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B89AA6ABEE3869C00D137583 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34A9E1CD13DDDC9A9A3EE356;
+			remoteInfo = FloridaStateParksGuide;
+		};
+		A6C31A013ABF895EDF3309B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 34A9E1CD13DDDC9A9A3EE356;
+			remoteInfo = FloridaStateParksGuide;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		70E8CC9944CB6E930921B1B1 /* FloridaStateParksGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloridaStateParksGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE5A4D515B5A37907401D2C1 /* FloridaStateParksGuideApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FloridaStateParksGuideApp.swift"; sourceTree = "<group>"; };
+		ACB672FDCD8AB6ED7AEDF0CC /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Activity.swift"; sourceTree = "<group>"; };
+		74715D300A2E4698A0FB213A /* Park+Seed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Park+Seed.swift"; sourceTree = "<group>"; };
+		E81EB908B6B353108C3156AC /* Park.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Park.swift"; sourceTree = "<group>"; };
+		691A67CA3A2E6EB9C5C38CEF /* Region.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Region.swift"; sourceTree = "<group>"; };
+		2F1895AFA773E132E79BBA37 /* Color+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Hex.swift"; sourceTree = "<group>"; };
+		F994EBB8E3F460B37D5AC66D /* ParksViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ParksViewModel.swift"; sourceTree = "<group>"; };
+		98938941515A6BEC964B24A0 /* ActivitiesSectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ActivitiesSectionView.swift"; sourceTree = "<group>"; };
+		7C63F7F904569B2DAE9FD7A3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentView.swift"; sourceTree = "<group>"; };
+		D0CADA59C748B855864EC846 /* FavoriteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FavoriteButton.swift"; sourceTree = "<group>"; };
+		7228B00A539C7F9113B8F597 /* GradientHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GradientHeaderView.swift"; sourceTree = "<group>"; };
+		8805470DAA5FE1FE4815B2DC /* ParkDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ParkDetailView.swift"; sourceTree = "<group>"; };
+		BE7C3B0D58C95729D282ADEE /* ParkListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ParkListView.swift"; sourceTree = "<group>"; };
+		94B88C9E035F03ED4061A8D4 /* ParkRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ParkRowView.swift"; sourceTree = "<group>"; };
+		A1D728B0D174DB6E4176EAA5 /* StatsRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StatsRowView.swift"; sourceTree = "<group>"; };
+		99706B7C1AEC2F18DFDC400C /* FloridaStateParksGuideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FloridaStateParksGuideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		80CA97C01B8B520A81405E18 /* ParksViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ParksViewModelTests.swift"; sourceTree = "<group>"; };
+		51DB44E2AC4040E03CCA64A9 /* FloridaStateParksGuideUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FloridaStateParksGuideUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		844CAA6421451F5E4CFC56F9 /* ParkNavigationUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ParkNavigationUITests.swift"; sourceTree = "<group>"; };
+		123FB566C8CB6D216F3188C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DC3FA0A4B3D30CCC40966892 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB9D7F39B3AEB46AD4CAD0D1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		1F35142A1CEC647F8842DB48 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0D6904AF72DE92438ABC7C9A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				ACB672FDCD8AB6ED7AEDF0CC /* Activity.swift */,
+				74715D300A2E4698A0FB213A /* Park+Seed.swift */,
+				E81EB908B6B353108C3156AC /* Park.swift */,
+				691A67CA3A2E6EB9C5C38CEF /* Region.swift */,
+			);
+			path = "Models";
+			sourceTree = "<group>";
+		};
+		4898466FDAE248120F5CF1F3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				2F1895AFA773E132E79BBA37 /* Color+Hex.swift */,
+			);
+			path = "Utilities";
+			sourceTree = "<group>";
+		};
+		F5524B1A14A056C4C6B7479F /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				F994EBB8E3F460B37D5AC66D /* ParksViewModel.swift */,
+			);
+			path = "ViewModels";
+			sourceTree = "<group>";
+		};
+		32D07510E97DF0CD1FB2739F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				98938941515A6BEC964B24A0 /* ActivitiesSectionView.swift */,
+				7C63F7F904569B2DAE9FD7A3 /* ContentView.swift */,
+				D0CADA59C748B855864EC846 /* FavoriteButton.swift */,
+				7228B00A539C7F9113B8F597 /* GradientHeaderView.swift */,
+				8805470DAA5FE1FE4815B2DC /* ParkDetailView.swift */,
+				BE7C3B0D58C95729D282ADEE /* ParkListView.swift */,
+				94B88C9E035F03ED4061A8D4 /* ParkRowView.swift */,
+				A1D728B0D174DB6E4176EAA5 /* StatsRowView.swift */,
+			);
+			path = "Views";
+			sourceTree = "<group>";
+		};
+		7267BB0491503FDD8AC4242E /* FloridaStateParksGuide */ = {
+			isa = PBXGroup;
+			children = (
+				0D6904AF72DE92438ABC7C9A /* Models */,
+				4898466FDAE248120F5CF1F3 /* Utilities */,
+				F5524B1A14A056C4C6B7479F /* ViewModels */,
+				32D07510E97DF0CD1FB2739F /* Views */,
+				EE5A4D515B5A37907401D2C1 /* FloridaStateParksGuideApp.swift */,
+				123FB566C8CB6D216F3188C3 /* Assets.xcassets */,
+			);
+			path = "FloridaStateParksGuide";
+			sourceTree = "<group>";
+		};
+		577F9ACB9A93E113285175C5 /* FloridaStateParksGuideTests */ = {
+			isa = PBXGroup;
+			children = (
+				80CA97C01B8B520A81405E18 /* ParksViewModelTests.swift */,
+			);
+			path = "FloridaStateParksGuideTests";
+			sourceTree = "<group>";
+		};
+		88313C20708FBCABAFD2E12C /* FloridaStateParksGuideUITests */ = {
+			isa = PBXGroup;
+			children = (
+				844CAA6421451F5E4CFC56F9 /* ParkNavigationUITests.swift */,
+			);
+			path = "FloridaStateParksGuideUITests";
+			sourceTree = "<group>";
+		};
+		86024CAD1E83101D97359D73 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				70E8CC9944CB6E930921B1B1 /* FloridaStateParksGuide.app */,
+				99706B7C1AEC2F18DFDC400C /* FloridaStateParksGuideTests.xctest */,
+				51DB44E2AC4040E03CCA64A9 /* FloridaStateParksGuideUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FAD58DE7366495DB4650CFEF = {
+			isa = PBXGroup;
+			children = (
+				7267BB0491503FDD8AC4242E /* FloridaStateParksGuide */,
+				577F9ACB9A93E113285175C5 /* FloridaStateParksGuideTests */,
+				88313C20708FBCABAFD2E12C /* FloridaStateParksGuideUITests */,
+				86024CAD1E83101D97359D73 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		34A9E1CD13DDDC9A9A3EE356 /* FloridaStateParksGuide */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9263113FA3C4DEC9F31C8091 /* Build configuration list for PBXNativeTarget "FloridaStateParksGuide" */;
+			buildPhases = (
+				21FE57CB072C60FA99EDD38B /* Sources */,
+				DC3FA0A4B3D30CCC40966892 /* Frameworks */,
+				CB98577F86173D471A02FEE5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FloridaStateParksGuide;
+			productName = FloridaStateParksGuide;
+			productReference = 70E8CC9944CB6E930921B1B1 /* FloridaStateParksGuide.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C54D5F75FFFE4F2FDCBF041F /* FloridaStateParksGuideTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA9A799A255C25C89DBBE859 /* Build configuration list for PBXNativeTarget "FloridaStateParksGuideTests" */;
+			buildPhases = (
+				BA7768A8831E83CF491455AF /* Sources */,
+				BB9D7F39B3AEB46AD4CAD0D1 /* Frameworks */,
+				F16315783CFC4E99019F1D48 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				63987463B9A29CBCFD0DDD62 /* PBXTargetDependency */,
+			);
+			name = FloridaStateParksGuideTests;
+			productName = FloridaStateParksGuideTests;
+			productReference = 99706B7C1AEC2F18DFDC400C /* FloridaStateParksGuideTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3AD73E9E0E05F1C7BF3521D3 /* FloridaStateParksGuideUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D864DA7296EB55E47EA43149 /* Build configuration list for PBXNativeTarget "FloridaStateParksGuideUITests" */;
+			buildPhases = (
+				C0992E21BD3DF37EA3DFA54D /* Sources */,
+				1F35142A1CEC647F8842DB48 /* Frameworks */,
+				E0561A78DD5000DAE2DD80B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2ED4EEA753CC785F88D9FD6 /* PBXTargetDependency */,
+			);
+			name = FloridaStateParksGuideUITests;
+			productName = FloridaStateParksGuideUITests;
+			productReference = 51DB44E2AC4040E03CCA64A9 /* FloridaStateParksGuideUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		46F86FAA6BBF9AC94A7E4595 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					34A9E1CD13DDDC9A9A3EE356 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					C54D5F75FFFE4F2FDCBF041F = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 34A9E1CD13DDDC9A9A3EE356;
+					};
+					3AD73E9E0E05F1C7BF3521D3 = {
+						CreatedOnToolsVersion = 15.0;
+						TestTargetID = 34A9E1CD13DDDC9A9A3EE356;
+					};
+				};
+			};
+			buildConfigurationList = 05225A408618B9B1FF2508C3 /* Build configuration list for PBXProject "FloridaStateParksGuide" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = FAD58DE7366495DB4650CFEF;
+			productRefGroup = 86024CAD1E83101D97359D73 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				34A9E1CD13DDDC9A9A3EE356 /* FloridaStateParksGuide */,
+				C54D5F75FFFE4F2FDCBF041F /* FloridaStateParksGuideTests */,
+				3AD73E9E0E05F1C7BF3521D3 /* FloridaStateParksGuideUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CB98577F86173D471A02FEE5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F220CE9B5BB42925A7269A8F /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F16315783CFC4E99019F1D48 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E0561A78DD5000DAE2DD80B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21FE57CB072C60FA99EDD38B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				95BCD475CDA6F9B156B1EF68 /* FloridaStateParksGuideApp.swift in Sources */,
+				538DA28153A12891BEFB1F3E /* Activity.swift in Sources */,
+				BC17B675FB196AEBFD71D0DD /* Park+Seed.swift in Sources */,
+				1AC04E528FDBD8E60398071D /* Park.swift in Sources */,
+				910C14864D88E342A259013E /* Region.swift in Sources */,
+				6AC9DDEA8082F70FE694F352 /* Color+Hex.swift in Sources */,
+				DF0797FD1E47F22DFFDB6241 /* ParksViewModel.swift in Sources */,
+				7590BF9AC374EC25FEF03FC7 /* ActivitiesSectionView.swift in Sources */,
+				6E1CFB41B560FD9EB135525B /* ContentView.swift in Sources */,
+				62798D871CB784EC9ED3B4A0 /* FavoriteButton.swift in Sources */,
+				9E85D60731632B17FD699D7A /* GradientHeaderView.swift in Sources */,
+				CAACE661F2AEC5E1847B7F51 /* ParkDetailView.swift in Sources */,
+				C0B036ACADA57379770AB9E6 /* ParkListView.swift in Sources */,
+				AFEE5A2466FB5CD28A433AFB /* ParkRowView.swift in Sources */,
+				B2E5DD291E50839ED9421344 /* StatsRowView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BA7768A8831E83CF491455AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4A22121BE287129E23A40873 /* ParksViewModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C0992E21BD3DF37EA3DFA54D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFF59DF66F1687E070D12205 /* ParkNavigationUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		63987463B9A29CBCFD0DDD62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34A9E1CD13DDDC9A9A3EE356 /* FloridaStateParksGuide */;
+			targetProxy = B89AA6ABEE3869C00D137583 /* PBXContainerItemProxy */;
+		};
+		D2ED4EEA753CC785F88D9FD6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 34A9E1CD13DDDC9A9A3EE356 /* FloridaStateParksGuide */;
+			targetProxy = A6C31A013ABF895EDF3309B6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		9680CABE85554190AE2ADB8D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5AC10BCF63F4CC265115AA3A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1F2E3D90E7E8156074D81350 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "FL State Parks";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patbots.FloridaStateParksGuide;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		DD6B27E268E0DADAA311D1C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "FL State Parks";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patbots.FloridaStateParksGuide;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F078905F2AE2E54AF4601E1E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patbots.FloridaStateParksGuideTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FloridaStateParksGuide.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FloridaStateParksGuide";
+			};
+			name = Debug;
+		};
+		C89A4A9B3CB2873193DC9EE8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patbots.FloridaStateParksGuideTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FloridaStateParksGuide.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FloridaStateParksGuide";
+			};
+			name = Release;
+		};
+		7EC97AB242F637B2ADF4FE5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patbots.FloridaStateParksGuideUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FloridaStateParksGuide;
+			};
+			name = Debug;
+		};
+		41B5F74F937A48D64B1B7CBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.patbots.FloridaStateParksGuideUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FloridaStateParksGuide;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		05225A408618B9B1FF2508C3 /* Build configuration list for PBXProject "FloridaStateParksGuide" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9680CABE85554190AE2ADB8D /* Debug */,
+				5AC10BCF63F4CC265115AA3A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9263113FA3C4DEC9F31C8091 /* Build configuration list for PBXNativeTarget "FloridaStateParksGuide" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1F2E3D90E7E8156074D81350 /* Debug */,
+				DD6B27E268E0DADAA311D1C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA9A799A255C25C89DBBE859 /* Build configuration list for PBXNativeTarget "FloridaStateParksGuideTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F078905F2AE2E54AF4601E1E /* Debug */,
+				C89A4A9B3CB2873193DC9EE8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D864DA7296EB55E47EA43149 /* Build configuration list for PBXNativeTarget "FloridaStateParksGuideUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EC97AB242F637B2ADF4FE5E /* Debug */,
+				41B5F74F937A48D64B1B7CBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 46F86FAA6BBF9AC94A7E4595 /* Project object */;
+}
