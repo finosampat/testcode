@@ -38,23 +38,44 @@ final class ParkNavigationUITests: XCTestCase {
         toggleFavorite(expectFavorite: true)
         goBackIfNeeded()
 
-        if app.buttons["Cancel"].exists { app.buttons["Cancel"].tap() }
+        dismissSearch()
         pause()
 
-        let filter = app.buttons["favoritesFilter"]
+        let filter = element("favoritesFilter")
         XCTAssertTrue(filter.waitForExistence(timeout: 5))
         filter.tap()
         pause(2)
-        XCTAssertTrue(app.buttons["parkRow.grayton-beach"].exists)
-        XCTAssertTrue(app.buttons["parkRow.torreya"].exists)
-        XCTAssertTrue(app.buttons["parkRow.blue-spring"].exists)
-        XCTAssertFalse(app.buttons["parkRow.anastasia"].exists)
+        XCTAssertTrue(element("parkRow.grayton-beach").exists)
+        XCTAssertTrue(element("parkRow.torreya").exists)
+        XCTAssertTrue(element("parkRow.blue-spring").exists)
+        XCTAssertFalse(element("parkRow.anastasia").exists)
         filter.tap()
         pause(2)
+        XCTAssertTrue(element("parkRow.anastasia").waitForExistence(timeout: 5))
+    }
+
+    /// Sidebar rows can surface as buttons (stack) or cells (split-view selection list), so match any type.
+    private func element(_ identifier: String) -> XCUIElement {
+        app.descendants(matching: .any).matching(identifier: identifier).firstMatch
+    }
+
+    /// The search bar's dismiss control is "Cancel" before iOS 26 and a "close" (xmark) button on iOS 26+ iPhone.
+    /// An always-visible sidebar search field (iPad) has neither, so clear it and dismiss the keyboard instead.
+    private func dismissSearch() {
+        for label in ["Cancel", "Close", "close"] {
+            let button = app.buttons[label]
+            if button.exists {
+                button.tap()
+                return
+            }
+        }
+        let clear = app.searchFields.firstMatch.buttons["Clear text"]
+        if clear.exists { clear.tap() }
+        if app.keyboards.firstMatch.exists { app.typeText("\n") }
     }
 
     private func openPark(_ identifier: String, named name: String) {
-        let row = app.buttons[identifier]
+        let row = element(identifier)
         XCTAssertTrue(row.waitForExistence(timeout: 5), "Missing row \(identifier)")
         row.tap()
         XCTAssertTrue(app.staticTexts[name].waitForExistence(timeout: 5))

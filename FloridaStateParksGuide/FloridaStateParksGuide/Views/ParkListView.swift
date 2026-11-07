@@ -10,7 +10,11 @@ struct ParkListView: View {
         @Bindable var viewModel = viewModel
         list
             .navigationTitle("Florida State Parks")
-            .searchable(text: $viewModel.searchText, prompt: "Parks, regions, activities")
+            .searchable(
+                text: $viewModel.searchText,
+                placement: selection == nil ? .automatic : .navigationBarDrawer(displayMode: .always),
+                prompt: "Parks, regions, activities"
+            )
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Toggle(isOn: $viewModel.showFavoritesOnly.animation()) {
